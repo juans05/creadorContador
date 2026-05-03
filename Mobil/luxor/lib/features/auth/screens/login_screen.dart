@@ -48,12 +48,19 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(LuxorSpacing.lg),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).padding.top -
+                  MediaQuery.of(context).padding.bottom,
+            ),
+            child: IntrinsicHeight(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
               const Icon(Icons.diamond, size: 64, color: LuxorColors.primary),
               const SizedBox(height: LuxorSpacing.md),
               Text('LUXOR', textAlign: TextAlign.center, style: Theme.of(context).textTheme.displayLarge),
@@ -81,7 +88,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () => context.go('/register'),
                 child: const Text('No tienes cuenta? Registrate', style: TextStyle(color: LuxorColors.textSecondary)),
               ),
-            ],
+                ],
+              ),
+            ),
           ),
         ),
       ),

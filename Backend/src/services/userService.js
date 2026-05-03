@@ -9,21 +9,24 @@ class UserService {
     if (password !== confirmPassword) {
       const error = new Error('Las contraseñas no coinciden');
       error.code = 'PASSWORD_MISMATCH';
-      error.status = 422;
+      error.statusCode = 422;
+      error.isOperational = true;
       throw error;
     }
 
     if (password.length < 8) {
       const error = new Error('La contraseña debe tener mínimo 8 caracteres');
       error.code = 'MIN_LENGTH';
-      error.status = 422;
+      error.statusCode = 422;
+      error.isOperational = true;
       throw error;
     }
 
     if (!/^\d{9,12}$/.test(phone)) {
       const error = new Error('Formato inválido. Debe ser 9XXXXXXXXX');
       error.code = 'INVALID_FORMAT';
-      error.status = 422;
+      error.statusCode = 422;
+      error.isOperational = true;
       throw error;
     }
 
@@ -31,7 +34,8 @@ class UserService {
     if (exists) {
       const error = new Error('Este email ya está registrado');
       error.code = 'EMAIL_ALREADY_EXISTS';
-      error.status = 400;
+      error.statusCode = 400;
+      error.isOperational = true;
       throw error;
     }
 
