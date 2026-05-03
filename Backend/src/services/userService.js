@@ -61,20 +61,23 @@ class UserService {
 
     if (!user) {
       const error = new Error('Credenciales inválidas');
-      error.status = 401;
+      error.statusCode = 401;
+      error.isOperational = true;
       throw error;
     }
 
     const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
       const error = new Error('Credenciales inválidas');
-      error.status = 401;
+      error.statusCode = 401;
+      error.isOperational = true;
       throw error;
     }
 
     if (user.status !== 'active') {
-      const error = new Error('Cuenta no está activa');
-      error.status = 403;
+      const error = new Error('Cuenta no está activa. Verifica tu correo para activarla.');
+      error.statusCode = 403;
+      error.isOperational = true;
       throw error;
     }
 

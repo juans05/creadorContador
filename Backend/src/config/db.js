@@ -5,8 +5,8 @@ const pool = new Pool({
   ssl: false
 });
 
-pool.on('connect', async () => {
-  await pool.query('SET search_path TO luxordb, public');
+pool.on('connect', (client) => {
+  client.query('SET search_path TO luxordb, public');
 });
 
 const query = async (text, params) => {

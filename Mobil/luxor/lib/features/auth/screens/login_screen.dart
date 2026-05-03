@@ -36,7 +36,9 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() => _error = response.data['message'] ?? 'Error al iniciar sesion');
       }
     } on DioException catch (e) {
-      setState(() => _error = e.response?.data['message'] ?? 'Error de conexion');
+      final data = e.response?.data;
+      final msg = (data is Map) ? data['message']?.toString() : null;
+      setState(() => _error = msg ?? 'Error de conexión. Verifica tu red.');
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }

@@ -1,3 +1,7 @@
+-- Crear schema si no existe
+CREATE SCHEMA IF NOT EXISTS luxordb;
+SET search_path TO luxordb, public;
+
 -- TABLA 1: users
 CREATE TABLE users (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -119,12 +123,13 @@ CREATE TABLE photos (
   influencer_id UUID NOT NULL REFERENCES influencers(id) ON DELETE CASCADE,
   url VARCHAR(500) NOT NULL,
   thumbnail_url VARCHAR(500),
-  cloudinary_public_id VARCHAR(255),
+  cloudinary_public_id VARCHAR(500),
   description TEXT,
-  visibility VARCHAR(20) NOT NULL CHECK (visibility IN ('public', 'subscribers_only', 'ppv')),
+  visibility VARCHAR(20) DEFAULT 'public' CHECK (visibility IN ('public', 'subscribers', 'ppv')),
   ppv_price_diamonds INT,
-  views_count INT DEFAULT 0,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  likes_count INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX idx_photos_influencer ON photos(influencer_id);
 CREATE INDEX idx_photos_visibility ON photos(visibility);
@@ -228,24 +233,7 @@ CREATE TABLE conversion_logs (
 );
 CREATE INDEX idx_conversion_logs_conversion ON conversion_logs(conversion_id);
 
--- TABLA 15: photos
-CREATE TABLE photos (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  influencer_id UUID NOT NULL REFERENCES influencers(id) ON DELETE CASCADE,
-  url VARCHAR(500) NOT NULL,
-  thumbnail_url VARCHAR(500),
-  cloudinary_public_id VARCHAR(500),
-  description TEXT,
-  visibility VARCHAR(20) DEFAULT 'public' CHECK (visibility IN ('public', 'subscribers', 'ppv')),
-  ppv_price_diamonds INT,
-  likes_count INT DEFAULT 0,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-CREATE INDEX idx_photos_influencer ON photos(influencer_id);
-CREATE INDEX idx_photos_visibility ON photos(visibility);
-
--- TABLA 16: videos
+-- TABLA 15: videos
 CREATE TABLE videos (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   influencer_id UUID NOT NULL REFERENCES influencers(id) ON DELETE CASCADE,
