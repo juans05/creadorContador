@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#e2bec0",
+                    "on-primary-fixed": "#40000f",
+                    "on-tertiary-container": "#34007f",
+                    "on-error": "#690005",
+                    "on-error-container": "#ffdad6",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#ffb77f",
+                    "on-tertiary-fixed-variant": "#5700c9",
+                    "on-primary-fixed-variant": "#91002d",
+                    "on-secondary-fixed": "#2f1500",
+                    "tertiary-fixed": "#e9ddff",
+                    "inverse-on-surface": "#2e303a",
+                    "secondary-container": "#ff8a00",
+                    "on-primary": "#67001e",
+                    "on-secondary": "#4e2600",
+                    "tertiary-fixed-dim": "#d1bcff",
+                    "surface-container-lowest": "#0c0e17",
+                    "on-primary-container": "#5b0019",
+                    "on-secondary-container": "#613100",
+                    "inverse-primary": "#ba1340",
+                    "tertiary-container": "#a178ff",
+                    "surface-tint": "#ffb2b8",
+                    "primary": "#ffb2b8",
+                    "surface": "#11131c",
+                    "secondary": "#ffb77f",
+                    "surface-variant": "#32343e",
+                    "surface-container-high": "#282933",
+                    "primary-container": "#ff506f",
+                    "inverse-surface": "#e1e1ef",
+                    "surface-container-highest": "#32343e",
+                    "secondary-fixed": "#ffdcc4",
+                    "surface-bright": "#373943",
+                    "outline": "#a9898b",
+                    "surface-container": "#1d1f29",
+                    "surface-container-low": "#191b24",
+                    "on-secondary-fixed-variant": "#6f3900",
+                    "surface-dim": "#11131c",
+                    "on-tertiary-fixed": "#23005b",
+                    "primary-fixed": "#ffdadb",
+                    "tertiary": "#d1bcff",
+                    "primary-fixed-dim": "#ffb2b8",
+                    "background": "#11131c",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "sm": "16px",
+                    "md": "24px",
+                    "gutter": "24px",
+                    "xl": "64px",
+                    "margin": "32px",
+                    "lg": "40px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Lexend"],
+                    "label-md": ["Be Vietnam Pro"],
+                    "headline-md": ["Lexend"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "body-md": ["Be Vietnam Pro"],
+                    "headline-lg": ["Lexend"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#0F111A] text-on-background font-body-md min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-slate-900/60 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-white/10 shadow-2xl shadow-black/40">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button onclick="window.history.back()" class="active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-400">arrow_back</span>
+</button>
+<a href="index.html" class="no-underline">
+<h1 class="font-lexend font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D6D] to-[#FF8A00] text-2xl font-black tracking-tighter">LUXOR</h1>
+</a>
+</div>
+<div class="relative active:scale-95 duration-200">
+<img alt="Creator Profile" class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="A high-end professional headshot of a charismatic male creator with a stylish modern haircut. He is wearing a minimalist black turtleneck against a deep charcoal studio background. The lighting is dramatic and cinematic, with a soft orange rim light that aligns with the premium LUXOR brand aesthetic. The overall mood is sophisticated, elite, and technologically focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeIK8zpWeF0MU2lDPDNmnatP72DIBGDxKhiaFfa-K-8BdFNwwgWFMDvbsU3VCA9uIn6SJfLA07paa0F794zD--bJvmRzf3zujI98UoF-6Y2rEz05jjmI-5pTddW8mdGwdfgD4bUXbMdG1V1893bqO0AdQ_fwKksSCZeGayjQyDFo74Om30Oww16-Apg8K69QTndHcnBfNmv-ZPgct9NAhFGdhwUo61ZDR6qecHO1o837qeX-My555_ZUioOzx-TRwxIRG-Vex130Q"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-4">
+<!-- Filter Horizontal Scroll -->
+<section class="flex overflow-x-auto gap-3 pb-6 hide-scrollbar">
+<button class="flex-none px-6 py-2 rounded-full bg-gradient-to-r from-[#FF4D6D] to-[#FF8A00] text-white font-medium text-label-md shadow-lg shadow-rose-500/20 active:scale-95 transition-all">
+                Populares
+            </button>
+<button class="flex-none px-6 py-2 rounded-full glass-card text-on-surface-variant font-medium text-label-md active:scale-95 transition-all">
+                Nuevos
+            </button>
+<button class="flex-none px-6 py-2 rounded-full glass-card text-on-surface-variant font-medium text-label-md active:scale-95 transition-all">
+                Precio: $
+            </button>
+<button class="flex-none px-6 py-2 rounded-full glass-card text-on-surface-variant font-medium text-label-md active:scale-95 transition-all">
+                Duración
+            </button>
+</section>
+<!-- Content Grid (2-column) -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Video Card 1 (Premium) -->
+<div class="relative group aspect-[9/16] rounded-xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover" data-alt="A stunning cinematic wide shot of a futuristic neon city under a deep purple and coral sunset. Abstract digital architecture rises into the sky, reflecting vibrant pink and orange light. The scene is immersive and high-quality, representing a premium creator video clip. The lighting is moody and elite, emphasizing a professional dark premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwZlfWCIc1fIgMvBk--xCq-Z777aSsCq-PjZP_26ON3ZpiYwKz8wEGky2kO48RAerpnxrPhaHbU6WIFiJ_X_i2CHAdcYfGiUp1I5DKtCsgf9t6pZkajZE-b0GjN5l6ONbCR6AP33kshIcWi9h5UYj8eYVmwlwqBKLVGruTbLiwXoWZaDMq5vthicNH43_d9AUabLXOtKDakkwTJm93nduhQB7etHEPb0V0yA6eXMBObcYu-ag9CwZafIkeE2X2sOiwtdsGcixw7TE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<!-- Premium Lock Overlay -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="glass-card p-3 rounded-full border-white/20">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+</div>
+<!-- Info Overlay -->
+<div class="absolute bottom-0 left-0 right-0 p-3">
+<p class="text-white font-bold text-sm truncate">Behind the Scenes: Latin Tour</p>
+<div class="flex justify-between items-center mt-1">
+<span class="text-on-surface-variant text-[10px]">Mateo Art</span>
+<span class="text-secondary font-bold text-xs">500 💎</span>
+</div>
+</div>
+</div>
+<!-- Video Card 2 -->
+<div class="relative group aspect-[9/16] rounded-xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover" data-alt="A high-tech gaming setup with glowing RGB lights in coral and orange tones. In the center, a person is focused on multiple screens displaying vibrant digital art and code. The atmosphere is energetic and professional, capturing the life of a modern digital creator. The depth of field is shallow, creating a cinematic look with beautiful bokeh effects in the dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXaRu0JNV0iIISxDXVjk1PPrj_JqDFzxLvuyYuK3rsXIGhxdjfRBSiPlEwkNtLy6sQtlocWRFLgkXWtvWincDdfs8Q0pw5H8SuEplZJL7Mpf9F7PUwBeTJxs6-8tXvLJ9-Hr_QU76y2Sd4GMg5VyEW3to7hz9Al6C2hx4ZUcx7XyRZJv3PAgav-l1ebFWfV3SwD9K6n_Wwtd9JUcixjfH1Ypgb28_MGVkmmnFODd6Z72lCFOMm6BQcAam36Jy_194WI6CQ9hJ9DZ0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<!-- Info Overlay -->
+<div class="absolute bottom-0 left-0 right-0 p-3">
+<p class="text-white font-bold text-sm truncate">Setup Tour 2024</p>
+<div class="flex justify-between items-center mt-1">
+<span class="text-on-surface-variant text-[10px]">TechVibe</span>
+<span class="text-secondary font-bold text-xs">$4.99</span>
+</div>
+</div>
+</div>
+<!-- Video Card 3 -->
+<div class="relative group aspect-[9/16] rounded-xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover" data-alt="A dynamic action shot of a professional dancer performing under warm orange spotlights in a dark, atmospheric studio. Dust particles catch the light, adding texture to the cinematic scene. The dancer's movement is blurred slightly to convey energy and flow. The color palette is dominated by deep blacks and vibrant warm highlights, fitting the luxury LATAM creator aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNOHx4vUdnv2ZJ1foB2aZu_8ZKqZMLDx793RDgfF4HBxgR5K9CqfeEeMeBXBYM5mx0C16NPlXkOlOFB8BfJuakGmMswJSob6KHEGGNxcGo22CZgtHJ6ix4VL1mvkokDg-uHR98C8i99PDRfi4H_bC4sL7hNjRjKme5lhmnaEVLOlPMfIZ3jbTb3K-Jk5-eH3aToYzykjov7T233ODZ74t58lSRCZ7gorL5J3DiNvqQM9QS9cacFLKVPE0has75mELKFQMnRe419tw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<!-- Info Overlay -->
+<div class="absolute bottom-0 left-0 right-0 p-3">
+<p class="text-white font-bold text-sm truncate">Ritmos Urbanos Masterclass</p>
+<div class="flex justify-between items-center mt-1">
+<span class="text-on-surface-variant text-[10px]">Elena Dance</span>
+<span class="text-secondary font-bold text-xs">$2.99</span>
+</div>
+</div>
+</div>
+<!-- Video Card 4 (Premium) -->
+<div class="relative group aspect-[9/16] rounded-xl overflow-hidden glass-card">
+<img class="w-full h-full object-cover" data-alt="An abstract 3D render of flowing liquid gold and magenta light intertwining in a dark void. The textures are highly detailed and glossy, reflecting a premium digital content feel. The lighting creates deep shadows and brilliant highlights, giving the piece a sense of motion and high value. This represents an exclusive, artistic video clip for elite subscribers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZmkHOBliARwaBBUerhU5hDBOvJD7XwTi4mZDEJUlFAqkgBRy1l5jApQHAuMkplej4hMXHmsdtO7FspyWIRWs9HIaQ_68m50Dui37myGxBhjS_AhaoMHnKCX7clcTT0OVi-D82qG0JALJzh-JY01yXIgXjvUQw3SoHTxPhoaE_a211g6F4_pQSQejwS5pgtyojkCZGk71-bOM64YXl5ZFOxc2Ex7N36NkS61y4qNlpp2-y2Dv5TQGW_bhbpBaVzN8R-JsYh0tHPFI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<!-- Premium Lock Overlay -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="glass-card p-3 rounded-full border-white/20">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+</div>
+<!-- Info Overlay -->
+<div class="absolute bottom-0 left-0 right-0 p-3">
+<p class="text-white font-bold text-sm truncate">Lux Digital Art #04</p>
+<div class="flex justify-between items-center mt-1">
+<span class="text-on-surface-variant text-[10px]">Abstracto</span>
+<span class="text-secondary font-bold text-xs">800 💎</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB: Switch to Feed -->
+<div class="fixed bottom-32 right-6 z-40">
+<a href="index.html" class="bg-gradient-to-r from-[#FF4D6D] to-[#FF8A00] text-white px-6 py-4 rounded-full shadow-2xl flex items-center gap-2 group active:scale-90 transition-transform no-underline">
+<span class="material-symbols-outlined" data-icon="movie">movie</span>
+<span class="font-lexend font-bold text-sm">Feed</span>
+</a>
+</div>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-[#0F111A]/80 backdrop-blur-xl flex justify-around items-center px-4 pb-8 pt-4 border-t border-white/5 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+    <a href="index.html" class="flex flex-col items-center justify-center text-slate-500 hover:text-[#FF4D6D] active:scale-90 transition-all duration-300 no-underline">
+        <span class="material-symbols-outlined text-3xl">movie</span>
+        <span class="font-['Lexend'] text-[10px] font-semibold uppercase tracking-widest mt-1">Feed</span>
+    </a>
+    <a href="store.html" class="flex flex-col items-center justify-center text-[#FF4D6D] drop-shadow-[0_0_8px_rgba(255,77,109,0.5)] active:scale-90 transition-all duration-300 no-underline">
+        <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+        <span class="font-['Lexend'] text-[10px] font-semibold uppercase tracking-widest mt-1">Grilla</span>
+    </a>
+    <a href="wallet.html" class="flex flex-col items-center justify-center text-slate-500 hover:text-[#FF4D6D] active:scale-90 transition-all duration-300 no-underline">
+        <span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+        <span class="font-['Lexend'] text-[10px] font-semibold uppercase tracking-widest mt-1">Billetera</span>
+    </a>
+    <a href="profile.html" class="flex flex-col items-center justify-center text-slate-500 hover:text-[#FF4D6D] active:scale-90 transition-all duration-300 no-underline">
+        <span class="material-symbols-outlined text-3xl">person</span>
+        <span class="font-['Lexend'] text-[10px] font-semibold uppercase tracking-widest mt-1">Perfil</span>
+    </a>
+</nav>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 bg-black/80 backdrop-blur-md z-[60] flex items-center justify-center p-6">
+<div class="glass-card w-full max-w-sm rounded-lg overflow-hidden shadow-2xl p-8 text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-[#FF4D6D] to-[#FF8A00] rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<h2 class="font-lexend text-headline-md text-white mb-2">Contenido Premium</h2>
+<p class="font-body-md text-on-surface-variant mb-8 px-2">
+                Desbloquea este clip exclusivo o suscríbete para acceso total.
+            </p>
+<div class="flex flex-col gap-4">
+<a href="checkout.html" class="w-full py-4 btn-primary-gradient rounded-2xl font-headline-md text-white shadow-lg shadow-rose-500/25 active:scale-95 transition-all text-center no-underline">
+                        Suscribirse por $9.99/mes
+                    </a>
+                    <a href="checkout.html" class="w-full py-4 bg-white/5 border border-white/10 rounded-2xl font-headline-md text-white hover:bg-white/10 active:scale-95 transition-all text-center no-underline">
+                        Desbloquear contenido por $4.99
+                    </a>
+</div>
+<button class="mt-6 text-on-surface-variant text-sm font-medium hover:text-white transition-colors">
+                Cerrar
+            </button>
+</div>
+</div>
+</body></html>

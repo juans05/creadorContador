@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '../../features/auth/screens/login_screen.dart';
+import '../../features/auth/screens/register_screen.dart';
+import '../../features/home/screens/home_screen.dart';
+import '../../features/wallet/screens/wallet_screen.dart';
+import '../../features/creator_profile/screens/creator_profile_screen.dart';
+import '../../features/creator_dashboard/screens/dashboard_screen.dart';
+import '../../features/creator_dashboard/screens/upload_content_screen.dart';
+import '../../features/shared/widgets/bottom_nav_bar.dart';
+
+final storage = FlutterSecureStorage();
+
+final appRouter = GoRouter(
+  initialLocation: '/login',
+  redirect: (context, state) async {
+    final token = await storage.read(key: 'access_token');
+    final isAuth = token != null;
+    final isAuthRoute = state.matchedLocation == '/login' || state.matchedLocation == '/register';
+    
+    if (!isAuth && !isAuthRoute) return '/login';
+    if (isAuth && isAuthRoute) return '/home';
+    return null;
+  },
+  routes: [
+    GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
+    GoRoute(path: '/register', builder: (context, state) => const RegisterScreen()),
+    ShellRoute(
+      builder: (context, state, child) => MainShell(child: child),
+      routes: [
+        GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
+        GoRoute(path: '/wallet', builder: (context, state) => const WalletScreen()),
+        GoRoute(path: '/creador/:username', builder: (context, state) => CreatorProfileScreen(username: state.pathParameters['username']!)),
+        GoRoute(path: '/dashboard', builder: (context, state) => const DashboardScreen()),
+        GoRoute(path: '/dashboard/upload', builder: (context, state) => const UploadContentScreen()),
+      ],
+    ),
+  ],
+);
+
+class MainShell extends StatefulWidget {
+  final Widget child;
+  const MainShell({super.key, required this.child});
+
+  @override
+  State<MainShell> createState() => _MainShellState();
+}
+
+class _MainShellState extends State<MainShell> {
+  int _currentIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: widget.child,
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() => _currentIndex = index);
+          switch (index) {
+            case 0: context.go('/home'); break;
+            case 1: context.go('/wallet'); break;
+            case 2: context.go('/dashboard'); break;
+          }
+        },
+      ),
+    );
+  }
+}

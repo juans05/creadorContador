@@ -1,12 +1,12 @@
 const express = require('express');
 const cors = require('cors');
+const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Rutas
 const authRoutes = require('./routes/authRoutes');
 const influencerRoutes = require('./routes/influencerRoutes');
 const homeRoutes = require('./routes/homeRoutes');
@@ -26,5 +26,7 @@ app.use('/api/tips', tipRoutes);
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'Luxor API is running' });
 });
+
+app.use(errorHandler);
 
 module.exports = app;

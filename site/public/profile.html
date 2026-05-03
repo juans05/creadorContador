@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700;800;900&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#18e0af",
+                    "on-primary-fixed-variant": "#91002d",
+                    "surface": "#11131c",
+                    "on-secondary": "#003829",
+                    "inverse-primary": "#ba1340",
+                    "surface-tint": "#ffb2b8",
+                    "on-primary-container": "#5b0019",
+                    "on-tertiary-container": "#442000",
+                    "on-background": "#e1e1ef",
+                    "on-secondary-fixed-variant": "#00513d",
+                    "surface-container-high": "#282933",
+                    "on-tertiary-fixed": "#2f1500",
+                    "error": "#ffb4ab",
+                    "outline-variant": "#5a4042",
+                    "tertiary-fixed": "#ffdcc4",
+                    "surface-dim": "#11131c",
+                    "secondary-container": "#00daaa",
+                    "primary-fixed-dim": "#ffb2b8",
+                    "primary-container": "#ff506f",
+                    "secondary-fixed": "#4efdca",
+                    "on-primary-fixed": "#40000f",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#ffb77f",
+                    "tertiary-container": "#dc7600",
+                    "inverse-on-surface": "#2e303a",
+                    "surface-bright": "#373943",
+                    "secondary": "#45f7c5",
+                    "inverse-surface": "#e1e1ef",
+                    "primary": "#ffb2b8",
+                    "on-tertiary": "#4e2600",
+                    "on-surface": "#e1e1ef",
+                    "error-container": "#93000a",
+                    "primary-fixed": "#ffdadb",
+                    "outline": "#a9898b",
+                    "on-secondary-fixed": "#002117",
+                    "surface-container-low": "#191b24",
+                    "surface-container-highest": "#32343e",
+                    "background": "#11131c",
+                    "tertiary": "#ffb77f",
+                    "on-primary": "#67001e",
+                    "on-tertiary-fixed-variant": "#6f3900",
+                    "surface-variant": "#32343e",
+                    "on-surface-variant": "#e2bec0",
+                    "on-secondary-container": "#005a44",
+                    "surface-container": "#1d1f29",
+                    "surface-container-lowest": "#0c0e17",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "margin-desktop": "120px",
+                    "lg": "40px",
+                    "xl": "64px",
+                    "sm": "12px",
+                    "base": "8px",
+                    "md": "24px",
+                    "gutter": "16px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Lexend"],
+                    "display-lg": ["Lexend"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "headline-xl": ["Lexend"],
+                    "body-md": ["Be Vietnam Pro"],
+                    "label-bold": ["Lexend"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-xl": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(17, 19, 28, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(255, 77, 109, 0.5), inset 0 0 10px rgba(255, 77, 109, 0.3);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #FF4D6D, #FF8A00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-primary-gradient {
+            background: linear-gradient(135deg, #FF4D6D 0%, #FF8A00 100%);
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-white">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-slate-950/60 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-5 h-16 w-full shadow-2xl shadow-rose-500/10">
+<div class="flex items-center gap-4">
+<button onclick="window.history.back()" class="active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-400">arrow_back</span>
+</button>
+<a href="index.html" class="no-underline">
+<span class="font-lexend antialiased text-2xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D6D] to-[#FF8A00]">LUXOR</span>
+</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400 hover:text-rose-400 transition-colors">account_balance_wallet</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-rose-400 transition-colors">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/20">
+<img alt="Creator Profile Avatar" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a stylish LATAM female creator with a warm, confident expression. She has flowing dark hair and is wearing subtle jewelry, set against a soft-focus urban background with warm sunset lighting. The overall mood is sophisticated and authentic, aligning with a premium digital creator persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoNGx9CG3_n-cc2u5zpLmQgI9Qh1zHxWjEvMjlhjU8VeITRXjGHMBDrxCVbuwveOIR1m_af4f5jaPAyetCcuGgcATSStjS-oASZm_QRPahmT54ZUIgt5_3MulMRSZVWwcBjbammpe8o7fS9E-8HVgo73qEY5AIPfBxn1Yb7SYMTlhhpFjphQLRLio-rq-ke38iKTVc0Dbfy2ED63N6ItCRVUjJ0z95qb9nxKA0YRdZKb3RIMXYKSk3I6dSBEmvI_z57Gnv92CsBOQ"/>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-24">
+<!-- Hero Header -->
+<section class="relative h-64 w-full">
+<img alt="Profile Banner" class="w-full h-full object-cover" data-alt="A high-resolution wide banner image showing a vibrant stage production with dramatic purple and orange lighting. Silhouetted figures of a crowd are visible in the foreground, creating an energetic concert atmosphere. The style is cinematic and high-energy, utilizing a palette of deep indigos and electric corals to match the brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_a1C9lLCj7wuSb7VQr2u3Rfj84zCjiOu3LwXN4Nt-RwQV7DjAgPGBKegsXTwahuwEwKTZsGEkB-J-eMu_xgzTFSs2ANSAf1uqkoHnMly7xjHX2Wn-FfPY6ckxbObfPjoVom411TM6b-MAXFLNejZjJLrfA6EqEPp26g6y76lYMcukD10wAn0amRmy9mCXRAFvQZi5SVWxOqwAWr9Eh3Hz_ktjBGxoWXC06Ii97vOdN6aTbNnl4eQp9WexzsJbT9JHlbSy_dFz-Pk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</section>
+<!-- Profile Info -->
+<section class="px-margin-mobile -mt-16 relative z-10">
+<div class="flex justify-between items-end mb-4">
+<div class="relative">
+<div class="w-28 h-28 rounded-full border-4 border-background overflow-hidden neon-border">
+<img alt="Valeria Rojas" class="w-full h-full object-cover" data-alt="A high-contrast headshot of a beautiful Latina woman with vibrant energy and a bright smile. She is wearing fashionable streetwear. The background is a minimalist studio setting with a soft glow that emphasizes her facial features. The lighting is high-key and professional, reinforcing her status as a top-tier creator." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7kvGQxUpyaLSmU4A4hYGUSATepqUqnm8gvTCX1VSCQN6l2z1bQBy4Za3Q4SEc8PH1pL0522_aEK4MMJRVBG3uQs79kceq4ZfLVbUONtaBWsBAtennohJ0X4QQ-EKwAauY_Kmmuq9MkNyrYXhiD1LvGv0d1JASe2DzeQfd-RTU_ArZqmQJYnPZZ_tNFBecnHyYr3jpE_uSeJ2t6E7MfFk6ni9vZR9JYWTrJES_31pKZdldI2Vz71C6DfIzLDDXirrp01u-m0H5iDA"/>
+</div>
+<div class="absolute bottom-1 right-1 w-6 h-6 bg-secondary-fixed-dim rounded-full border-4 border-background flex items-center justify-center">
+<div class="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+</div>
+</div>
+<div class="flex gap-4 pb-2">
+<div class="text-center">
+<div class="font-headline-md font-bold text-white">1.2M</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-500 font-lexend">Fans</div>
+</div>
+<div class="text-center">
+<div class="font-headline-md font-bold text-white">4.5M</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-500 font-lexend">Likes</div>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex items-center gap-2 mb-1">
+<h1 class="font-headline-xl text-white">Valeria Rojas</h1>
+<span class="material-symbols-outlined text-secondary-fixed-dim text-xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-slate-400 font-lexend text-sm mb-4">@valeria_pro</p>
+<p class="text-on-surface font-body-md mb-4 leading-relaxed">
+                    Creando ritmos y momentos únicos. Bienvenida a mi espacio privado de música, vlogs y más. 🌴✨
+                </p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 rounded-full glass-panel border border-primary-container/30 text-primary-container text-xs font-label-bold">#Music</span>
+<span class="px-3 py-1 rounded-full glass-panel border border-secondary-fixed-dim/30 text-secondary-fixed-dim text-xs font-label-bold">#Latam</span>
+<span class="px-3 py-1 rounded-full glass-panel border border-tertiary/30 text-tertiary text-xs font-label-bold">#Vlogs</span>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="grid grid-cols-12 gap-3 mb-4">
+    <button class="col-span-12 h-14 btn-primary-gradient rounded-2xl font-lexend font-bold text-white flex items-center justify-center gap-3 active:scale-[0.98] transition-transform">
+        <span class="material-symbols-outlined">star</span> Suscribirse <span class="opacity-80 text-sm">$9.99/mes</span>
+    </button>
+</div>
+<div class="grid grid-cols-12 gap-3 mb-8">
+    <a href="dashboard.html" class="col-span-8 h-12 glass-panel border border-[#FF4D6D]/30 rounded-xl font-lexend font-bold text-[#FF4D6D] flex items-center justify-center gap-2 active:scale-95 transition-transform no-underline">
+        <span class="material-symbols-outlined text-xl">dashboard</span> Creator Studio
+    </a>
+    <button class="col-span-2 h-12 glass-panel border border-white/10 rounded-xl flex items-center justify-center text-tertiary active:scale-95 transition-transform">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">diamond</span>
+    </button>
+    <button class="col-span-2 h-12 glass-panel border border-white/10 rounded-xl flex items-center justify-center text-white active:scale-95 transition-transform">
+        <span class="material-symbols-outlined">mail</span>
+    </button>
+</div>
+<!-- Tabs Section -->
+<div class="flex border-b border-white/10 mb-6 sticky top-16 bg-background/80 backdrop-blur-md z-20">
+<button class="flex-1 py-4 font-lexend font-bold text-white border-b-2 border-primary-container active:scale-95 transition-all">Posts</button>
+<button class="flex-1 py-4 font-lexend font-medium text-slate-500 hover:text-white transition-all active:scale-95">Videoteca</button>
+<button class="flex-1 py-4 font-lexend font-medium text-rose-400 hover:text-rose-300 transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="w-2 h-2 bg-rose-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(244,63,94,0.8)]"></span>
+                    LIVE
+                </button>
+<button class="flex-1 py-4 font-lexend font-medium text-slate-500 hover:text-white transition-all active:scale-95">Premium</button>
+</div>
+<!-- Content Feed -->
+<div class="space-y-8">
+<!-- Public Post -->
+<article class="bg-surface-container-low rounded-xl overflow-hidden border border-white/5">
+<div class="p-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary-container/20">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="Small thumbnail of the profile owner." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_FpurH_vSLvmPU2rgY8r2RFhGS51nlgRsdzX0x45MhBZYLu6dvK0Znv7d0vQveTJVQ0t6cfYka_799w3MkS2RjBgG3_3KyIHpGxpQo4yvAd5aZ1XzOoc8KDwCDucYB3RuSWvVBDs6LCZB6N1TXxXdHK9lbYrIntAHJcn0B0K566aMOQjv5dSEuh3hgUz6iPTeqgPotLhNhcR6iUClEH-_pUJ-vDbLeYyq5xVCE-arBahAFeIf_ClNtykJMO3vhbYIfH5itnnuD3w"/>
+</div>
+<div>
+<div class="font-lexend font-bold text-sm text-white">Valeria Rojas</div>
+<div class="text-[10px] text-slate-500">hace 2 horas</div>
+</div>
+</div>
+<p class="px-4 pb-3 text-on-surface-variant font-body-md">Detrás de cámaras de la nueva sesión. El ritmo de LATAM no para! 🎧🔥</p>
+<div class="aspect-[9/16] w-full bg-surface-container-highest">
+<img alt="Behind the scenes" class="w-full h-full object-cover" data-alt="A candid vertical photo showing professional music equipment, including a mixing board with glowing LED lights and studio headphones, in a darkly lit recording studio. The atmosphere is creative and professional, with a cool teal and deep magenta lighting scheme that highlights the high-end technology used by the artist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmyEqBDaBcBGovxtT5KZOV00Ig0X8Q3vrViYCqCkc7NNqE04IsthTmbH5A10-o4ZX9nnh8vH9GmG_d7eBOFhLFiQYRlfjRo3bpP6ZP5wnf-Bt5QXs_cRtcYcixkXhvJ0z0QvvCL5dfBGHecRPM42TskPRz6u9TFx5lAqnS0WWNCrXyA0qdbD4Fy2DF3nbOuzw6fYdqYHobKZay7MvOhHrbsTgVCjMC_sCcW2pZsYZP3mPIf6CihbDkOzshK3nB2_O-nfsJlMe9tqg"/>
+</div>
+<div class="p-4 flex gap-6">
+<div class="flex items-center gap-2 text-slate-400">
+<span class="material-symbols-outlined text-rose-500" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-xs font-lexend">24.5k</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-xs font-lexend">1.2k</span>
+</div>
+</div>
+</article>
+<!-- Locked Post -->
+<article class="bg-surface-container-low rounded-xl overflow-hidden border border-white/5 relative">
+<div class="p-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary-container/20">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="Small thumbnail of the profile owner." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrD-iFqX96_s3JdSUkqxhIA_8HN-1PQBLmDvPPJ52llyeRokscv7abutX-nAHkjcSU_kGNKoDNeHxbrnvYXDtYyGo_db2fyKlzZ3F5jFx96eNuDUVeakDHuShA72oxLYTxYFVRFjEIVnuvVd-GFLAysw-bQaBjov22OLrJwwWLNDXX6tCYkXwL1jWlT2nHGd-mx1iu9RQFKw58XUe1fMECCRjCoQabAKASZTObB2iDsUjoyooHGKZn3wj79YytIa2eEHDwsdTdgnk"/>
+</div>
+<div>
+<div class="font-lexend font-bold text-sm text-white">Valeria Rojas</div>
+<div class="text-[10px] text-slate-500">hace 5 horas</div>
+</div>
+</div>
+<div class="relative aspect-[9/16] w-full">
+<img alt="Exclusive Content" class="w-full h-full object-cover blur-3xl opacity-50" data-alt="A blurred, artistic shot of a woman dancing in a dimly lit club with colorful neon strobe lights. The motion blur creates a sense of high energy and exclusivity. The palette is dominated by intense pinks and purples, giving a sense of a premium, private event that is hidden behind a digital wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQgIDO5YELv9m2LnKglGHIwt8uulJrQaKeEvPW3Bh77vFKMABp1UzVFxLEs6QvAU5j0tKTmg4IVUQ_zN9i--MkTJH9jzjygoxIAIHXcCletHgxngjWiLG-P8v3FuR6BAE6KkDOQHIwpduI9zgQpt_QB65bJAajj48Om8U4nCndEYtGE0URxwFttkVCpzd_25JCm0i2Q1o3LA4K1opwf4iAZFgaFkQ8ZWuOPJUkR9dhkvyDWrKqwrSlkwjr1nmC3_u_zauzXIaaipg"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+<div class="w-16 h-16 rounded-full glass-panel border border-white/20 flex items-center justify-center mb-4 text-primary-container">
+<span class="material-symbols-outlined text-3xl">lock</span>
+</div>
+<h3 class="font-lexend font-bold text-lg text-white mb-2">Contenido Exclusivo</h3>
+<p class="text-slate-400 text-sm mb-6 max-w-[200px]">Desbloquea este video especial de mi última presentación.</p>
+<a href="checkout.html" class="w-full h-12 btn-primary-gradient rounded-xl font-lexend font-bold text-white active:scale-95 transition-transform flex items-center justify-center no-underline">
+                                Desbloquear por $5.00
+                            </a>
+<a href="checkout.html" class="mt-3 text-slate-400 text-xs font-lexend underline block text-center no-underline">o Suscribirse para ver todo</a>
+</div>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-[#0F111A]/80 backdrop-blur-xl flex justify-around items-center px-4 pb-8 pt-4 border-t border-white/5 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+    <a href="index.html" class="flex flex-col items-center justify-center text-slate-500 hover:text-[#FF4D6D] active:scale-90 transition-all duration-300 no-underline">
+        <span class="material-symbols-outlined text-3xl">grid_view</span>
+        <span class="font-['Lexend'] text-[10px] font-semibold uppercase tracking-widest mt-1">Explorar</span>
+    </a>
+    <a href="store.html" class="flex flex-col items-center justify-center text-slate-500 hover:text-[#FF4D6D] active:scale-90 transition-all duration-300 no-underline">
+        <span class="material-symbols-outlined text-3xl">shopping_bag</span>
+        <span class="font-['Lexend'] text-[10px] font-semibold uppercase tracking-widest mt-1">Tienda</span>
+    </a>
+    <a href="wallet.html" class="flex flex-col items-center justify-center text-slate-500 hover:text-[#FF4D6D] active:scale-90 transition-all duration-300 no-underline">
+        <span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+        <span class="font-['Lexend'] text-[10px] font-semibold uppercase tracking-widest mt-1">Billetera</span>
+    </a>
+    <a href="profile.html" class="flex flex-col items-center justify-center text-[#FF4D6D] drop-shadow-[0_0_8px_rgba(255,77,109,0.5)] active:scale-90 transition-all duration-300 no-underline">
+        <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">person</span>
+        <span class="font-['Lexend'] text-[10px] font-semibold uppercase tracking-widest mt-1">Perfil</span>
+    </a>
+</nav>
+</body></html>
