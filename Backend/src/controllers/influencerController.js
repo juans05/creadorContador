@@ -36,3 +36,14 @@ exports.getDashboardStats = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getGrid = async (req, res, next) => {
+  try {
+    const { username } = req.params;
+    const userId = req.user?.userId;
+    const result = await influencerService.getGrid(username, userId);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    next(error);
+  }
+};

@@ -77,6 +77,59 @@ class ContentRepository {
   async deleteVideo(id, influencerId) {
     await db.query('DELETE FROM videos WHERE id = $1 AND influencer_id = $2', [id, influencerId]);
   }
+
+  async findGridByInfluencer(influencerId, options = {}) {
+    const { limit = 50, offset = 0, includePrivate = false } = options;
+    const includeAll = includePrivate || false;
+
+    const photosResult = await db.query(
+      `SELECT id, 'photo' as type, thumbnail_url as thumbnail, url, visibility, 
+              ppv_price_diamonds as "ppvPrice", likes_count as "likesCount", created_at as "createdAt"
+       FROM photos 
+       WHERE influencer_id = $1 AND (visibility = 'public' OR $2 = true)
+       ORDER BY created_at DESC
+       LIMIT $3 OFFSET $4`,
+      [influencerId, includeAll, limit, offset]
+    );
+
+    const videosResult = await db.query(
+      `SELECT id, 'video' as type, thumbnail_url as thumbnail, url, visibility, 
+              ppv_price_diamonds as "ppvPrice", likes_count as "likesCount", created_at as "createdAt"
+       FROM videos 
+       WHERE influencer_id = $1 AND (visibility = 'public' OR $2 = true)
+       ORDER BY created_at DESC
+       LIMIT $3 OFFSET $4`,
+      [influencerId, includeAll, limit, offset]
+    );
+
+    const allContent = [...photosResult.rows, ...videosResult.rows]
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    return allContent.slice(0, limit);
+  }
+
+  async getGridCounts(influencerId) {
+    const photosCount = await db.query(
+      'SELECT COUNT(*) as count FROM photos WHERE influencer_id = $1',
+      [influencerId]
+    );
+    const videosCount = await db.query(
+      'SELECT COUNT(*) as count FROM videos WHERE influencer_id = $1',
+      [influencerId]
+    );
+    return {
+      photos: parseInt(photosCount.rows[0].count, 10),
+      videos: parseInt(videosCount.rows[0].count, 10)
+    };
+  }
+
+  async hasUserPurchasedContent(userId, contentId) {
+    const result = await db.query(
+      'SELECT id FROM user_diamond_purchases WHERE user_id = $1 AND content_id = $2',
+      [userId, contentId]
+    );
+    return result.rows.length > 0;
+  }
 }
 
 module.exports = new ContentRepository();

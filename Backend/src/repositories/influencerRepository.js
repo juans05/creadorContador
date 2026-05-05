@@ -29,6 +29,28 @@ class InfluencerRepository {
     return result.rows[0];
   }
 
+  async getPreviewPhotos(influencerId, limit = 3) {
+    const photosResult = await db.query(
+      `SELECT url, thumbnail_url as thumbnail, 'photo' as type FROM photos 
+       WHERE influencer_id = $1 AND visibility = 'public' 
+       ORDER BY created_at DESC LIMIT $2`,
+      [influencerId, limit]
+    );
+    const videosResult = await db.query(
+      `SELECT url, thumbnail_url as thumbnail, 'video' as type FROM videos 
+       WHERE influencer_id = $1 AND visibility = 'public' 
+       ORDER BY created_at DESC LIMIT $2`,
+      [influencerId, limit]
+    );
+    
+    const combined = [...photosResult.rows, ...videosResult.rows]
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .slice(0, limit)
+      .map(item => ({ url: item.url, thumbnail: item.thumbnail, type: item.type }));
+    
+    return combined;
+  }
+
   async create({ userId, username, bio, yapeIdEncrypted }) {
     const result = await db.query(
       `INSERT INTO influencers (user_id, username, bio, yape_id_encrypted)

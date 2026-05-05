@@ -8,6 +8,41 @@ const diamondPackages = {
   1000: 129.99
 };
 
+exports.getBalance = async (req, res) => {
+  const userId = req.user.userId;
+
+  try {
+    let result = await pool.query(
+      'SELECT balance, total_spent, total_earned, last_updated FROM diamonds_balance WHERE user_id = $1',
+      [userId]
+    );
+
+    if (result.rows.length === 0) {
+      await pool.query(
+        'INSERT INTO diamonds_balance (user_id, balance) VALUES ($1, 0)',
+        [userId]
+      );
+      result = await pool.query(
+        'SELECT balance, total_spent, total_earned, last_updated FROM diamonds_balance WHERE user_id = $1',
+        [userId]
+      );
+    }
+
+    res.status(200).json({
+      success: true,
+      data: {
+        balance: result.rows[0].balance,
+        totalSpent: result.rows[0].total_spent,
+        totalEarned: result.rows[0].total_earned,
+        lastUpdated: result.rows[0].last_updated
+      }
+    });
+  } catch (error) {
+    console.error('Get balance error:', error);
+    res.status(500).json({ success: false, message: 'Error al obtener balance' });
+  }
+};
+
 exports.purchaseDiamonds = async (req, res) => {
   const { packageSize, source_id } = req.body;
   const userId = req.user.userId;

@@ -1,6 +1,7 @@
 const influencerRepository = require('../repositories/influencerRepository');
 const subscriptionRepository = require('../repositories/subscriptionRepository');
 const contentRepository = require('../repositories/contentRepository');
+const interactionsRepository = require('../repositories/interactionsRepository');
 
 class InfluencerService {
   async register({ userId, username, bio, yapeNumber }) {
@@ -87,6 +88,52 @@ class InfluencerService {
     return {
       stats: influencer,
       recentTransactions
+    };
+  }
+
+  async getGrid(username, userId) {
+    const influencer = await influencerRepository.findByUsername(username);
+    if (!influencer) {
+      const error = new Error('Creadora no encontrada');
+      error.status = 404;
+      throw error;
+    }
+
+    let isSubscribed = false;
+    let canAccessSubscribers = false;
+    if (userId) {
+      const sub = await subscriptionRepository.findActive(userId, influencer.influencer_id);
+      isSubscribed = !!sub;
+      canAccessSubscribers = isSubscribed;
+    }
+
+    const counts = await contentRepository.getGridCounts(influencer.influencer_id);
+    const grid = await contentRepository.findGridByInfluencer(influencer.influencer_id);
+
+    const gridWithAccess = grid.map(item => {
+      let hasAccess = item.visibility === 'public';
+      if (item.visibility === 'subscribers' && canAccessSubscribers) hasAccess = true;
+      if (item.visibility === 'ppv') {
+        hasAccess = item.ppvPrice === null || item.ppvPrice === 0;
+      }
+
+      return {
+        id: item.id,
+        type: item.type,
+        thumbnail: item.thumbnail,
+        url: hasAccess ? item.url : null,
+        visibility: item.visibility,
+        ppvPrice: item.ppvPrice,
+        hasAccess,
+        likesCount: item.likesCount,
+        createdAt: item.createdAt
+      };
+    });
+
+    return {
+      username: influencer.username,
+      totalItems: counts.photos + counts.videos,
+      grid: gridWithAccess
     };
   }
 }

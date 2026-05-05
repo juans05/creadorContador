@@ -251,3 +251,132 @@ CREATE TABLE videos (
 );
 CREATE INDEX idx_videos_influencer ON videos(influencer_id);
 CREATE INDEX idx_videos_visibility ON videos(visibility);
+
+-- TABLA 16: likes (favoritos/likes)
+CREATE TABLE likes (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  content_id UUID NOT NULL,
+  content_type VARCHAR(20) NOT NULL CHECK (content_type IN ('photo', 'video')),
+  influencer_id UUID NOT NULL REFERENCES influencers(id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(user_id, content_id)
+);
+CREATE INDEX idx_likes_user ON likes(user_id);
+CREATE INDEX idx_likes_content ON likes(content_id, content_type);
+CREATE INDEX idx_likes_influencer ON likes(influencer_id);
+
+-- TABLA 17: comments
+CREATE TABLE comments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  content_id UUID NOT NULL,
+  content_type VARCHAR(20) NOT NULL CHECK (content_type IN ('photo', 'video')),
+  influencer_id UUID NOT NULL REFERENCES influencers(id) ON DELETE CASCADE,
+  parent_id UUID REFERENCES comments(id) ON DELETE CASCADE,
+  content TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX idx_comments_content ON comments(content_id, content_type);
+CREATE INDEX idx_comments_influencer ON comments(influencer_id);
+
+-- TABLA 18: categories
+CREATE TABLE categories (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name VARCHAR(50) UNIQUE NOT NULL,
+  slug VARCHAR(50) UNIQUE NOT NULL,
+  icon VARCHAR(50),
+  color VARCHAR(20),
+  is_active BOOLEAN DEFAULT true,
+  sort_order INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX idx_categories_slug ON categories(slug);
+CREATE INDEX idx_categories_active ON categories(is_active) WHERE is_active = true;
+
+-- TABLA 19: influencer_categories
+CREATE TABLE influencer_categories (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  influencer_id UUID NOT NULL REFERENCES influencers(id) ON DELETE CASCADE,
+  category_id UUID NOT NULL REFERENCES categories(id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(influencer_id, category_id)
+);
+CREATE INDEX idx_inf_cats_influencer ON influencer_categories(influencer_id);
+CREATE INDEX idx_inf_cats_category ON influencer_categories(category_id);
+
+-- TABLA 20: trending_tags
+CREATE TABLE trending_tags (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  tag VARCHAR(100) UNIQUE NOT NULL,
+  usage_count INT DEFAULT 0,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX idx_trending_tag ON trending_tags(tag);
+CREATE INDEX idx_trending_active ON trending_tags(is_active) WHERE is_active = true;
+
+-- TABLA 21: follows
+CREATE TABLE follows (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  follower_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  influencer_id UUID NOT NULL REFERENCES influencers(id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(follower_id, influencer_id)
+);
+CREATE INDEX idx_follows_follower ON follows(follower_id);
+CREATE INDEX idx_follows_influencer ON follows(influencer_id);
+
+-- TABLA 22: notifications
+CREATE TABLE notifications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  type VARCHAR(50) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  body TEXT,
+  data JSONB,
+  is_read BOOLEAN DEFAULT false,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  read_at TIMESTAMP
+);
+CREATE INDEX idx_notifications_user ON notifications(user_id);
+CREATE INDEX idx_notifications_read ON notifications(user_id, is_read) WHERE is_read = false;
+CREATE INDEX idx_notifications_created ON notifications(created_at DESC);
+
+-- TABLA 23: reports (denuncias)
+CREATE TABLE reports (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  reporter_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  reported_user_id UUID REFERENCES users(id) ON DELETE SET NULL,
+  reported_influencer_id UUID REFERENCES influencers(id) ON DELETE SET NULL,
+  content_id UUID,
+  content_type VARCHAR(20),
+  reason VARCHAR(50) NOT NULL,
+  description TEXT,
+  status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'reviewed', 'resolved', 'rejected')),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  resolved_at TIMESTAMP
+);
+CREATE INDEX idx_reports_reporter ON reports(reporter_id);
+CREATE INDEX idx_reports_status ON reports(status);
+
+-- DATOS INICIALES: categorias
+INSERT INTO categories (name, slug, icon, color, sort_order) VALUES
+  ('Adulto', 'adult', 'adult', '#FF4D6D', 1),
+  ('Musica', 'music', 'music_note', '#FF8A00', 2),
+  ('Juegos', 'gaming', 'sports_esports', '#9C27B0', 3),
+  ('Belleza', 'beauty', 'spa', '#E91E63', 4),
+  ('Influencer', 'influencer', 'star', '#00BCD4', 5)
+ON CONFLICT (slug) DO NOTHING;
+
+-- DATOS INICIALES: trending tags
+INSERT INTO trending_tags (tag, usage_count) VALUES
+  ('Trending', 1000),
+  ('New', 800),
+  ('Latam', 600),
+  ('Live', 500),
+  ('VIP', 400),
+  ('Exclusive', 300),
+  ('PPV', 250),
+  ('18Plus', 200)
+ON CONFLICT (tag) DO NOTHING;
